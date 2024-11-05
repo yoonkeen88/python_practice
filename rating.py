@@ -58,7 +58,7 @@ root.title("정규분포 계산기")
 
 # 창 크기 설정과 중앙 배치
 window_width = 300
-window_height = 200
+window_height = 300
 screen_width = root.winfo_screenwidth()
 screen_height = root.winfo_screenheight()
 center_x = int(screen_width/2 - window_width/2)

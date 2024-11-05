@@ -20,16 +20,17 @@ setup(
     options={'py2app': OPTIONS},
     setup_requires=['py2app'],
 )
-```
 
+
+'''
 3. 실행 파일 생성:
-```bash
+bash
 # 개발 모드로 테스트
 python setup.py py2app -A
 
 # 배포용 빌드
 python setup.py py2app
-```
+
 
 생성된 앱은 `dist` 폴더에서 찾을 수 있습니다.
 
@@ -39,3 +40,4 @@ python setup.py py2app
 3. Mac의 보안 설정 때문에 실행이 차단될 수 있습니다. 이 경우 시스템 환경설정 → 보안 및 개인 정보 보호에서 앱 실행을 허용해주어야 합니다.
 
 이렇게 수정하면 Mac에서도 정상적으로 작동할 것입니다. 혹시 다른 오류가 발생하면 알려주세요!
+'''
