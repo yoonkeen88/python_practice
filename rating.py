@@ -5,6 +5,20 @@ import matplotlib.pyplot as plt
 from scipy.stats import norm
 import tkinter as tk
 from tkinter import messagebox
+import matplotlib.font_manager as fm
+import os
+
+if os.name == 'nt':  # Windows
+    font_path = "C:/Windows/Fonts/malgun.ttf"
+elif os.name == 'posix':  # macOS/Linux
+    font_path = "/Library/Fonts/AppleGothic.ttf"  # macOS에서 사용할 수 있는 폰트 경로 예시
+else:
+    font_path = None  # 폰트가 없을 경우 기본 설정으로 넘어가도록 처리
+
+if font_path and os.path.exists(font_path):
+    fontprop = fm.FontProperties(fname=font_path)
+    plt.rc('font', family=fontprop.get_name())
+
 
 def calculate_and_plot():
     try:
@@ -15,7 +29,7 @@ def calculate_and_plot():
         n = int(entry_n.get())
         
         # Z 점수와 분위수 계산
-        z = (score - mean) / sd
+        z = (score-mean)/sd
         qutle = 1 - norm.cdf(z)
         rank = qutle * n
         
@@ -31,17 +45,17 @@ def calculate_and_plot():
         plt.plot(x, y, label="Normal Distribution")
         plt.fill_between(x, y, where=(x >= z), color="skyblue", alpha=0.5, 
                         label=f"P(X ≥ {z:.3f}) = {qutle:.3f}")
-        plt.title("정규분포")
-        plt.xlabel("표준화 점수")
-        plt.ylabel("확률 밀도")
+        plt.title("Normal Distribution")
+        plt.xlabel("Z score")
+        plt.ylabel("Density")
         
         # 분위수 텍스트 추가
-        plt.text(z, norm.pdf(z) / 2, 
-                f"Z점수: {z:.3f}\n확률: {qutle:.3%}\n예상등수: {rank:.0f}", 
-                color="red", fontsize=10)
+        plt.text(z+0.3, norm.pdf(z) / 2, 
+                f"Z Score: {z:.3f}\nProbability: {qutle:.3%}\nExpected Rank: {rank:.0f}", 
+                color="black", fontsize=10)
         
         # z 값 선 그리기
-        plt.axvline(x=z, color="blue", linestyle="--", label=f"Z점수: {z:.3f}")
+        plt.axvline(x=z, color="blue", linestyle="--", label=f"Z-Score: {z:.3f}")
         
         # 범례 표시
         plt.legend()
@@ -54,9 +68,9 @@ def calculate_and_plot():
 
 # GUI 설정
 root = tk.Tk()
-root.title("정규분포 계산기")
+root.title("Calculate by normal dist form")
 
-# 창 크기 설정과 중앙 배치
+# 창 크기 설정
 window_width = 300
 window_height = 300
 screen_width = root.winfo_screenwidth()
