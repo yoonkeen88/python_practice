@@ -13,7 +13,7 @@ if os.name == 'nt':  # Windows
 elif os.name == 'posix':  # macOS/Linux
     font_path = "/Library/Fonts/AppleGothic.ttf"  # macOS에서 사용할 수 있는 폰트 경로 예시
 else:
-    font_path = None  # 폰트가 없을 경우 기본 설정으로 넘어가도록 처리
+    font_path = None  
 
 if font_path and os.path.exists(font_path):
     fontprop = fm.FontProperties(fname=font_path)
