@@ -2,8 +2,7 @@
 rating/
 
 dist/
-# 모든 .log 파일 무시
 *.log
 
-# 모든 .tmp 파일 무시
 *.tmp
+*.DS_Store
